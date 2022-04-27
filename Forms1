@@ -1,0 +1,163 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp7
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }//пусто
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }//пусто
+
+        public void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }//пусто
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            int docs = 0;
+            if (textBox1 != null)
+            {
+                docs = Convert.ToInt32(textBox1.Text);
+            }
+
+            string Chetcik2(int i, ref string s)
+            {
+                int sistem = 0;
+
+                if (textBox4 != null)
+                {
+                    sistem = Convert.ToInt32(textBox4.Text);
+                }
+
+                if (i > 0)
+                {
+                    Chetcik2(i / sistem, ref s);
+                    s += (i % sistem).ToString();
+                }
+                if (i == 0)
+                {
+                    return s;
+                }
+                if (sistem > 10)
+                {
+                    if (i > 0)
+                    {
+
+                        Chetcik2(i / sistem, ref s);
+                        int Sc = i % sistem;
+                        if (i % sistem < 10)
+                        {
+                            s += (i % sistem).ToString();
+                        }
+                        else
+                        {
+                            {
+                                switch (Sc)
+                                {
+                                    case 10:
+                                        s += "A";
+                                        break;
+                                    case 11:
+                                        s += "B";
+                                        break;
+                                    case 12:
+                                        s += "C";
+                                        break;
+                                    case 13:
+                                        s += "D";
+                                        break;
+                                    case 14:
+                                        s += "E";
+                                        break;
+                                    case 15:
+                                        s += "F";
+                                        break;
+
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                if (i == 0)
+                {
+                    return s;
+                }
+
+                return s;
+            }
+
+            string cif2 = "";
+            Chetcik2(docs, ref cif2);
+            textBox2.Text = Convert.ToString(cif2);
+
+        }//переводит из 10 в другую систему, тоже надо переработать, а то как индус работаешь емае
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+           
+                string docs1 = "123ABC";
+                 int docs2 = 1;
+                if (textBox2 != null)
+                {
+                    docs1 = textBox2.Text;
+                }
+                if(textBox3.Text != null)
+                {
+                    docs2 = Convert.ToInt32(textBox3.Text);
+                }
+                textBox1.Text = Convert.ToString(ToDec(docs1, docs2));
+                //textBox1.Text = Convert.ToString(Convert.ToInt32(docs1, docs2));
+                long ToDec(string value, int fromBase)
+                {
+                    const string TABLE = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                    long danko = 1, result = 0;
+                    for (var i = value.Length - 1; i >= 0; i--)
+                    {
+                        var index16 = TABLE.IndexOf(value[i]);
+
+                        result += danko * index16;
+                        danko *= fromBase;
+                    }
+                    return result;
+                }
+            
+
+
+
+        }//Переводит из различных систем в 10, надо переработать а то как-то строчек дофига, Сделай ещё одну текстбокс куда систему принимать 
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+        }//клинер, убирает любое непотребство
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }//пусто
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }//пусто
+    }
+}
